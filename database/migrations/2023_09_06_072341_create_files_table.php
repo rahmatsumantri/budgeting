@@ -12,7 +12,7 @@ return new class extends Migration
             $table->id();
             $table->string('type', 16);
             $table->unsignedBigInteger('type_id');
-            $table->string('image');
+            $table->string('file');
             $table->timestamps();
             $table->softDeletes();
         });
