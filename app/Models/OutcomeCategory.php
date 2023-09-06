@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Outcome;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class OutcomeCategory extends Model
 {
@@ -13,4 +15,10 @@ class OutcomeCategory extends Model
     protected $fillable = [
         'name'
     ];
+
+    ## Relasi ke Outcame
+    public function outcome()
+    {
+        return $this->hasMany(Outcome::class);
+    }
 }
