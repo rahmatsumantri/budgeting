@@ -16,7 +16,7 @@
                         <div class="card card-primary card-outline">
                             <div class="card-body">
                                 <div class="text-center">
-                                    <img class="img-fluid img-circle" src="{{ asset('img/rr.png') }}"
+                                    <img class="img-fluid img-circle" src="{{ asset('img/rr.webp') }}"
                                         alt="User profile picture">
                                 </div>
 
@@ -44,22 +44,22 @@
                                 <table class="table table-bordered table-hover tableBudgeting">
                                     <thead>
                                         <tr>
-                                            <th>Rendering engine</th>
-                                            <th>Browser</th>
-                                            <th>Platform(s)</th>
-                                            <th>Engine version</th>
-                                            <th>CSS grade</th>
+                                            <th>Tanggal</th>
+                                            <th>Kategori</th>
+                                            <th>Nama</th>
+                                            <th>File</th>
+                                            <th>Pengeluaran</th>
+                                            <th></th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td>Trident</td>
-                                            <td>Internet
-                                                Explorer 4.0
-                                            </td>
-                                            <td>Win 95+</td>
-                                            <td> 4</td>
-                                            <td>X</td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -74,22 +74,20 @@
                                 <table class="table table-bordered table-hover tableBudgeting">
                                     <thead>
                                         <tr>
-                                            <th>Rendering engine</th>
-                                            <th>Browser</th>
-                                            <th>Platform(s)</th>
-                                            <th>Engine version</th>
-                                            <th>CSS grade</th>
+                                            <th>Tanggal</th>
+                                            <th>Nama</th>
+                                            <th>File</th>
+                                            <th>Pengeluaran</th>
+                                            <th></th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td>Trident</td>
-                                            <td>Internet
-                                                Explorer 4.0
-                                            </td>
-                                            <td>Win 95+</td>
-                                            <td> 4</td>
-                                            <td>X</td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
                                         </tr>
                                     </tbody>
                                 </table>
