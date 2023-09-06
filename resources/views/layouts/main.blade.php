@@ -11,7 +11,16 @@
 
     <link rel="stylesheet" href="{{ asset('css/font.min.css') }}">
     <link rel="stylesheet" href="{{ asset('libs/fontawesome-free/css/all.min.css') }}">
+
+    {{-- datatables --}}
+    <link rel="stylesheet" href="{{ asset('libs/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('libs/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('libs/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
+    {{-- datatables --}}
+
     <link rel="stylesheet" href="{{ asset('css/main.min.css') }}">
+
+
 
 </head>
 
@@ -35,7 +44,24 @@
 
     <script src="{{ asset('libs/jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('libs/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+
+    {{-- datatables --}}
+    <script src="{{ asset('libs/datatables/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('libs/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('libs/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
+    <script src="{{ asset('libs/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('libs/datatables-buttons/js/dataTables.buttons.min.js') }}"></script>
+    <script src="{{ asset('libs/datatables-buttons/js/buttons.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('libs/jszip/jszip.min.js') }}"></script>
+    <script src="{{ asset('libs/pdfmake/pdfmake.min.js') }}"></script>
+    <script src="{{ asset('libs/pdfmake/vfs_fonts.js') }}"></script>
+    <script src="{{ asset('libs/datatables-buttons/js/buttons.html5.min.js') }}"></script>
+    <script src="{{ asset('libs/datatables-buttons/js/buttons.print.min.js') }}"></script>
+    <script src="{{ asset('libs/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
+    {{-- datatables --}}
+
     <script src="{{ asset('js/main.min.js') }}"></script>
+    <script src="{{ asset('js/custom.min.js') }}"></script>
 </body>
 
 
