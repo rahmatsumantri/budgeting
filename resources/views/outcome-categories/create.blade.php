@@ -19,22 +19,20 @@
                                 <h3 class="card-title"> Edit Kategori Pengeluaran</h3>
                             </div>
 
-                            <form action="{{ route('outcome-categories.update') }}" method="POST">
+                            <form action="{{ route('outcome-categories.store') }}" method="POST">
 
                                 @csrf
-                                
+
                                 <div class="card-body">
                                     <div class="form-group">
                                         <label for="name"> Nama </label>
                                         <input type="text" name="name"
-                                            class="form-control @error('title') is-invalid @enderror"
+                                            class="form-control @error('name') is-invalid @enderror"
                                             value="{{ old('name') }}">
 
                                         <!-- error message untuk name -->
                                         @error('name')
-                                            <div class="alert alert-danger mt-2">
-                                                {{ $message }}
-                                            </div>
+                                            <small class="text-danger">{{ $message }}</small>
                                         @enderror
                                     </div>
                                 </div>

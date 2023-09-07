@@ -22,6 +22,13 @@
     <link rel="stylesheet" href="{{ asset('libs/toastr/toastr.min.css') }}">
     {{-- toastr --}}
 
+    {{-- daterange picker --}}
+    <link rel="stylesheet" href="{{ asset('libs/daterangepicker/daterangepicker.css') }}">
+    {{-- daterange picker --}}
+
+
+    <!-- daterange picker -->
+
     <link rel="stylesheet" href="{{ asset('css/main.min.css') }}">
 
 
@@ -68,14 +75,23 @@
     <script src="{{ asset('libs/toastr/toastr.min.js') }}"></script>
     {{-- toastr --}}
 
+    {{-- daterange picker --}}
+    <script src="{{ asset('libs/moment/moment.min.js') }}"></script>
+    <script src="{{ asset('libs/daterangepicker/daterangepicker.js') }}"></script>
+    {{-- daterange picker --}}
+
     <script src="{{ asset('js/main.min.js') }}"></script>
     <script src="{{ asset('js/custom.min.js') }}"></script>
 
     <script>
         @if (session()->has('success'))
-            toastr.success('{{ session('success') }}', 'BERHASIL!', {positionClass: 'toast-bottom-right' });
+            toastr.success('{{ session('success') }}', 'BERHASIL!', {
+                positionClass: 'toast-bottom-right'
+            });
         @elseif (session()->has('error'))
-            toastr.error('{{ session('error') }}', 'GAGAL!', {positionClass: 'toast-bottom-right' });
+            toastr.error('{{ session('error') }}', 'GAGAL!', {
+                positionClass: 'toast-bottom-right'
+            });
         @endif
     </script>
 

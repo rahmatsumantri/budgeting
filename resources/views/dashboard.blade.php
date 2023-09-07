@@ -22,15 +22,18 @@
 
                                 <ul class="list-group list-group-unbordered my-3">
                                     <li class="list-group-item">
-                                        <b> Saldo <span class="float-right text-primary"> 999.999 </span> </b>
+                                        <b> Saldo <span class="float-right text-primary">
+                                                {{ number_format($balance->balance, 0, ',', '.') }} </span> </b>
                                     </li>
                                     <li class="list-group-item">
-                                        <b> Pengeluaran bulan ini <span class="float-right text-danger"> 999.999 </span>
+                                        <b> Pengeluaran bulan ini <span class="float-right text-danger">
+                                                {{ number_format($balance->total_outcome, 0, ',', '.') }} </span>
                                         </b>
                                     </li>
                                 </ul>
-                                <a href="#" class="btn btn-primary"><b>Pemasukan</b></a>
-                                <a href="#" class="btn btn-danger float-right"><b>Pengeluaran</b></a>
+                                <a href="{{ route('incomes.create') }}" class="btn btn-primary"><b>Pemasukan</b></a>
+                                <a href="{{ route('outcomes.create') }}"
+                                    class="btn btn-danger float-right"><b>Pengeluaran</b></a>
                             </div>
                         </div>
                     </div>
@@ -53,14 +56,28 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                        </tr>
+                                        @foreach ($outcomes as $outcome)
+                                            <tr>
+                                                <td> {{ $outcome->date }} </td>
+                                                <td> {{ $outcome->category_id }} </td>
+                                                <td> {{ $outcome->name }} </td>
+                                                <td> {{ $outcome->file }} </td>
+                                                <td> {{ $outcome->budget }} </td>
+                                                <td class="text-center d-flex justify-content-center">
+                                                    <a href="{{ route('outcomes.edit', $outcome->id) }}"
+                                                        class="btn btn-sm btn-primary mr-2"> <i class="fas fa-edit"></i>
+                                                    </a>
+                                                    <form onsubmit="return confirm('Apakah Anda Yakin ?');"
+                                                        action="{{ route('outcomes.destroy', $outcome->id) }}"
+                                                        method="POST">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="btn btn-sm btn-danger"> <i
+                                                                class="fas fa-trash"></i> </button>
+                                                    </form>
+                                                </td>
+                                            </tr>
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>
@@ -82,13 +99,27 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                        </tr>
+                                        @foreach ($incomes as $income)
+                                            <tr>
+                                                <td> {{ $income->date }} </td>
+                                                <td> {{ $income->name }} </td>
+                                                <td> {{ $income->file }} </td>
+                                                <td> {{ $income->budget }} </td>
+                                                <td class="text-center d-flex justify-content-center">
+                                                    <a href="{{ route('incomes.edit', $income->id) }}"
+                                                        class="btn btn-sm btn-primary mr-2"> <i class="fas fa-edit"></i>
+                                                    </a>
+                                                    <form onsubmit="return confirm('Apakah Anda Yakin ?');"
+                                                        action="{{ route('incomes.destroy', $income->id) }}"
+                                                        method="POST">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="btn btn-sm btn-danger"> <i
+                                                                class="fas fa-trash"></i> </button>
+                                                    </form>
+                                                </td>
+                                            </tr>
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>
