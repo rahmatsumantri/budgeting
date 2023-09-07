@@ -16,19 +16,20 @@
 
                         <div class="card card-primary card-outline">
                             <div class="card-header">
-                                <h3 class="card-title"> Edit Kategori Pengeluaran</h3>
+                                <h3 class="card-title"> Tambah Kategori Pengeluaran</h3>
                             </div>
 
-                            <form action="{{ route('outcome-categories.update') }}" method="POST">
+                            <form action="{{ route('outcome-categories.update', $outcomeCategory->id) }}" method="POST">
 
                                 @csrf
+                                @method('PUT')
                                 
                                 <div class="card-body">
                                     <div class="form-group">
                                         <label for="name"> Nama </label>
                                         <input type="text" name="name"
                                             class="form-control @error('title') is-invalid @enderror"
-                                            value="{{ old('name') }}">
+                                            value="{{ old('name', $outcomeCategory->name) }}">
 
                                         <!-- error message untuk name -->
                                         @error('name')
@@ -40,7 +41,7 @@
                                 </div>
 
                                 <div class="card-footer">
-                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                    <button type="submit" class="btn btn-primary">Update</button>
                                 </div>
 
                             </form>
