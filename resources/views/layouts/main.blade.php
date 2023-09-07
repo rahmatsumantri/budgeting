@@ -18,6 +18,10 @@
     <link rel="stylesheet" href="{{ asset('libs/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
     {{-- datatables --}}
 
+    {{-- toastr --}}
+    <link rel="stylesheet" href="{{ asset('libs/toastr/toastr.min.css') }}">
+    {{-- toastr --}}
+
     <link rel="stylesheet" href="{{ asset('css/main.min.css') }}">
 
 
@@ -60,8 +64,21 @@
     <script src="{{ asset('libs/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
     {{-- datatables --}}
 
+    {{-- toastr --}}
+    <script src="{{ asset('libs/toastr/toastr.min.js') }}"></script>
+    {{-- toastr --}}
+
     <script src="{{ asset('js/main.min.js') }}"></script>
     <script src="{{ asset('js/custom.min.js') }}"></script>
+
+    <script>
+        @if (session()->has('success'))
+            toastr.success('{{ session('success') }}', 'BERHASIL!', {positionClass: 'toast-bottom-right' });
+        @elseif (session()->has('error'))
+            toastr.error('{{ session('error') }}', 'GAGAL!', {positionClass: 'toast-bottom-right' });
+        @endif
+    </script>
+
 </body>
 
 

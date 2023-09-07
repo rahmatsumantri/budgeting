@@ -6,4 +6,4 @@ use App\Http\Controllers\OutcomeCategoryController;
 
 Route::get('/', [DashboardController::class, 'index']);
 
-Route::resource('/outcome-categories', OutcomeCategoryController::class);
+Route::resource('outcome-categories', OutcomeCategoryController::class);

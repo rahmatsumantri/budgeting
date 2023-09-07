@@ -59,7 +59,3 @@
     </div>
 
 @endsection
-
-{{-- inline javascript --}}
-@push('script')
-@endpush

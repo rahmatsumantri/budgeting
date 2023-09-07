@@ -11,32 +11,30 @@ class OutcomeCategoryController extends Controller
     {
         $outcomeCategories = OutcomeCategory::get();
 
-        return view('outcome-category.index', compact('outcomeCategories'));
+        return view('outcome-categories.index', compact('outcomeCategories'));
     }
+
 
     public function create()
     {
-        return view('outcome-category.create');
+        return view('outcome-categories.create');
     }
 
+    
     public function store(Request $request)
     {
         // validate request
         $this->validate($request, [
-            'image'     => 'required|image|mimes:jpeg,jpg,png',
-            'title'     => 'required|min:5',
-            'content'   => 'required|min:10'
+            'name'   => 'required'
         ]);
 
 
-        // insert new post to db
-        Post::create([
-            'title' => $request->title,
-            'content' => $request->content,
-            'image' => $image->hashName(),
+        // insert new OutcomeCategory to db
+        OutcomeCategory::create([
+            'name' => $request->name
         ]);
 
-        // render view
-        return redirect(route('posts.index'));
+        //redirect to index
+        return redirect()->route('outcome-categories.index')->with(['success' => 'Data Berhasil Disimpan!']);
     }
 }
