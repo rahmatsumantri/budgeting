@@ -104,7 +104,7 @@
                                                 <td> {{ $income->date }} </td>
                                                 <td> {{ $income->name }} </td>
                                                 <td> {{ $income->file }} </td>
-                                                <td> {{ $income->budget }} </td>
+                                                <td class="text-right"> {{ number_format($income->budget, 0, ',', '.') }} </td>
                                                 <td class="text-center d-flex justify-content-center">
                                                     <a href="{{ route('incomes.edit', $income->id) }}"
                                                         class="btn btn-sm btn-primary mr-2"> <i class="fas fa-edit"></i>
