@@ -58,11 +58,11 @@
                                     <tbody>
                                         @foreach ($outcomes as $outcome)
                                             <tr>
-                                                <td> {{ $outcome->date }} </td>
-                                                <td> {{ $outcome->category_id }} </td>
+                                                <td> {{ date('d/m/Y', strtotime($outcome->date )) }} </td>
+                                                <td> {{ $outcome->outcamecategory->name }} </td>
                                                 <td> {{ $outcome->name }} </td>
                                                 <td> {{ $outcome->file }} </td>
-                                                <td> {{ $outcome->budget }} </td>
+                                                <td class="text-right"> {{ number_format($outcome->budget, 0, ',', '.') }} </td>
                                                 <td class="text-center d-flex justify-content-center">
                                                     <a href="{{ route('outcomes.edit', $outcome->id) }}"
                                                         class="btn btn-sm btn-primary mr-2"> <i class="fas fa-edit"></i>
@@ -101,7 +101,7 @@
                                     <tbody>
                                         @foreach ($incomes as $income)
                                             <tr>
-                                                <td> {{ $income->date }} </td>
+                                                <td> {{ date('d/m/Y', strtotime($income->date ))}} </td>
                                                 <td> {{ $income->name }} </td>
                                                 <td> {{ $income->file }} </td>
                                                 <td class="text-right"> {{ number_format($income->budget, 0, ',', '.') }} </td>

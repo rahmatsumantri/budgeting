@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Balance;
 use Carbon\Carbon;
 use App\Models\Income;
 use Illuminate\Http\Request;

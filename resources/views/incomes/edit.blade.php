@@ -1,6 +1,6 @@
 @extends('layouts.main')
 
-@section('title', 'Kategori Pengeluaran')
+@section('title', 'Edit Pemasukan')
 
 @section('content')
 
@@ -16,7 +16,7 @@
 
                         <div class="card card-primary card-outline">
                             <div class="card-header">
-                                <h3 class="card-title"> Tambah Kategori Pengeluaran</h3>
+                                <h3 class="card-title"> Edit Pemasukan</h3>
                             </div>
 
                             <form action="{{ route('incomes.update', $income->id) }}" method="POST">

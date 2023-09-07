@@ -1,6 +1,6 @@
 @extends('layouts.main')
 
-@section('title', 'Kategori Pengeluaran')
+@section('title', 'Tambah Pemasukan')
 
 @section('content')
 
@@ -16,7 +16,7 @@
 
                         <div class="card card-primary card-outline">
                             <div class="card-header">
-                                <h3 class="card-title"> Edit Kategori Pengeluaran</h3>
+                                <h3 class="card-title"> Tambah Pemasukan</h3>
                             </div>
 
                             <form action="{{ route('incomes.store') }}" method="POST">
