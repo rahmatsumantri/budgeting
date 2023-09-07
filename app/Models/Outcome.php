@@ -16,6 +16,7 @@ class Outcome extends Model
         'outcome_category_id',
         'name',
         'description',
+        'image',
         'budget'
     ];
 

@@ -17,6 +17,7 @@ return new class extends Migration
 
             $table->string('name', 64);
             $table->text('description')->nullable();
+            $table->string('image')->nullable();
             $table->unsignedInteger('budget');
             $table->timestamps();
             $table->softDeletes();

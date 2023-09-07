@@ -20,7 +20,7 @@
                                         alt="User profile picture">
                                 </div>
 
-                                <ul class="list-group list-group-unbordered my-3">
+                                {{-- <ul class="list-group list-group-unbordered my-3">
                                     <li class="list-group-item">
                                         <b> Saldo <span class="float-right text-primary">
                                                 {{ number_format($balance->balance, 0, ',', '.') }} </span> </b>
@@ -30,7 +30,7 @@
                                                 {{ number_format($balance->total_outcome, 0, ',', '.') }} </span>
                                         </b>
                                     </li>
-                                </ul>
+                                </ul> --}}
                                 <a href="{{ route('incomes.create') }}" class="btn btn-primary"><b>Pemasukan</b></a>
                                 <a href="{{ route('outcomes.create') }}"
                                     class="btn btn-danger float-right"><b>Pengeluaran</b></a>
@@ -61,7 +61,9 @@
                                                 <td> {{ date('d/m/Y', strtotime($outcome->date )) }} </td>
                                                 <td> {{ $outcome->outcamecategory->name }} </td>
                                                 <td> {{ $outcome->name }} </td>
-                                                <td> {{ $outcome->file }} </td>
+                                                <td class="text-center">
+                                                    <img src="{{ Storage::url('public/outcomes/').$outcome->image }}" class="rounded" style="width: 150px">
+                                                </td>            
                                                 <td class="text-right"> {{ number_format($outcome->budget, 0, ',', '.') }} </td>
                                                 <td class="text-center d-flex justify-content-center">
                                                     <a href="{{ route('outcomes.edit', $outcome->id) }}"
@@ -103,7 +105,9 @@
                                             <tr>
                                                 <td> {{ date('d/m/Y', strtotime($income->date ))}} </td>
                                                 <td> {{ $income->name }} </td>
-                                                <td> {{ $income->file }} </td>
+                                                <td class="text-center">
+                                                    <img src="{{ Storage::url('public/outcomes/').$outcome->image }}" class="rounded" style="width: 150px">
+                                                </td>            
                                                 <td class="text-right"> {{ number_format($income->budget, 0, ',', '.') }} </td>
                                                 <td class="text-center d-flex justify-content-center">
                                                     <a href="{{ route('incomes.edit', $income->id) }}"

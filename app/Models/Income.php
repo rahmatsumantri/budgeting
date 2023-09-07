@@ -15,6 +15,7 @@ class Income extends Model
         'date',
         'name',
         'description',
+        'image',
         'budget'
     ];
 }

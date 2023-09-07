@@ -26,15 +26,25 @@ class IncomeController extends Controller
         $this->validate($request, [
             'date'  =>  'required',
             'name'  =>  'required',
-            'budget'  =>  'required'
+            'budget'  =>  'required',
+            'image' =>  'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
+        //upload image
+        $image_name = '';  
+        if($request->image) {
+            $image = $request->file('image');
+            $image->storeAs('public/incomes', $image->hashName());
+            $image_name = $image->hashName();
+        }
+        
 
         // insert new data to db
         Income::create([
             'date' => Carbon::createFromFormat('d/m/Y', $request->date)->format('Y-m-d'),
             'name' => $request->name,
             'description' => $request->description,
+            'image' => $image_name,
             'budget' => (int)str_replace('.', '', $request->budget)
         ]);
         
