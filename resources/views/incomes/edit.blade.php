@@ -19,7 +19,7 @@
                                 <h3 class="card-title"> Edit Pemasukan</h3>
                             </div>
 
-                            <form action="{{ route('incomes.update', $income->id) }}" method="POST">
+                            <form action="{{ route('incomes.update', $income->id) }}" method="POST" enctype="multipart/form-data">
 
                                 @csrf
                                 @method('PUT')
@@ -55,6 +55,17 @@
 
                                         <!-- error message -->
                                         @error('description')
+                                            <small class="text-danger">{{ $message }}</small>
+                                        @enderror
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="image">File</label>
+                                        <input type="file" class="form-control @error('image') is-invalid @enderror"
+                                            name="image">
+
+                                        <!-- error message -->
+                                        @error('image')
                                             <small class="text-danger">{{ $message }}</small>
                                         @enderror
                                     </div>
