@@ -58,13 +58,17 @@
                                     <tbody>
                                         @foreach ($outcomes as $outcome)
                                             <tr>
-                                                <td> {{ date('d/m/Y', strtotime($outcome->date )) }} </td>
+                                                <td> {{ date('d/m/Y', strtotime($outcome->date)) }} </td>
                                                 <td> {{ $outcome->outcamecategory->name }} </td>
                                                 <td> {{ $outcome->name }} </td>
                                                 <td class="text-center">
-                                                    <img src="{{ Storage::url('public/outcomes/').$outcome->image }}" class="rounded" style="width: 150px">
-                                                </td>            
-                                                <td class="text-right"> {{ number_format($outcome->budget, 0, ',', '.') }} </td>
+                                                    @if (Storage::disk('public')->exists('outcomes/' . $outcome->image))
+                                                    <img src="{{ Storage::url('public/outcomes/') . $outcome->image }}"
+                                                        class="rounded" style="width: 150px">
+                                                    @endif
+                                                </td>
+                                                <td class="text-right"> {{ number_format($outcome->budget, 0, ',', '.') }}
+                                                </td>
                                                 <td class="text-center d-flex justify-content-center">
                                                     <a href="{{ route('outcomes.edit', $outcome->id) }}"
                                                         class="btn btn-sm btn-primary mr-2"> <i class="fas fa-edit"></i>
@@ -103,12 +107,16 @@
                                     <tbody>
                                         @foreach ($incomes as $income)
                                             <tr>
-                                                <td> {{ date('d/m/Y', strtotime($income->date ))}} </td>
+                                                <td> {{ date('d/m/Y', strtotime($income->date)) }} </td>
                                                 <td> {{ $income->name }} </td>
                                                 <td class="text-center">
-                                                    <img src="{{ Storage::url('public/outcomes/').$outcome->image }}" class="rounded" style="width: 150px">
-                                                </td>            
-                                                <td class="text-right"> {{ number_format($income->budget, 0, ',', '.') }} </td>
+                                                    @if (Storage::disk('public')->exists('incomes/' . $income->image))
+                                                    <img src="{{ Storage::url('public/incomes/') . $income->image }}"
+                                                        class="rounded" style="width: 150px">
+                                                    @endif
+                                                </td>
+                                                <td class="text-right"> {{ number_format($income->budget, 0, ',', '.') }}
+                                                </td>
                                                 <td class="text-center d-flex justify-content-center">
                                                     <a href="{{ route('incomes.edit', $income->id) }}"
                                                         class="btn btn-sm btn-primary mr-2"> <i class="fas fa-edit"></i>

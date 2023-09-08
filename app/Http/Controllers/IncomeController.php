@@ -31,7 +31,7 @@ class IncomeController extends Controller
         ]);
 
         //upload image
-        $image_name = '';  
+        $image_name = 'no_image.webp';  
         if($request->image) {
             $image = $request->file('image');
             $image->storeAs('public/incomes', $image->hashName());
