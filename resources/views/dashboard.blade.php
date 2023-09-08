@@ -20,17 +20,17 @@
                                         alt="User profile picture">
                                 </div>
 
-                                {{-- <ul class="list-group list-group-unbordered my-3">
+                                <ul class="list-group list-group-unbordered my-3">
                                     <li class="list-group-item">
                                         <b> Saldo <span class="float-right text-primary">
-                                                {{ number_format($balance->balance, 0, ',', '.') }} </span> </b>
+                                                {{ number_format($balance, 0, ',', '.') }} </span> </b>
                                     </li>
                                     <li class="list-group-item">
                                         <b> Pengeluaran bulan ini <span class="float-right text-danger">
-                                                {{ number_format($balance->total_outcome, 0, ',', '.') }} </span>
+                                                {{ number_format($outcome_month, 0, ',', '.') }} </span>
                                         </b>
                                     </li>
-                                </ul> --}}
+                                </ul>
                                 <a href="{{ route('incomes.create') }}" class="btn btn-primary"><b>Pemasukan</b></a>
                                 <a href="{{ route('outcomes.create') }}"
                                     class="btn btn-danger float-right"><b>Pengeluaran</b></a>
