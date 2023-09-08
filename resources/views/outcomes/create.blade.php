@@ -19,7 +19,7 @@
                                 <h3 class="card-title"> Tambah Pengeluaran</h3>
                             </div>
 
-                            <form action="{{ route('outcomes.store') }}" method="POST">
+                            <form action="{{ route('outcomes.store') }}" method="POST" enctype="multipart/form-data">
 
                                 @csrf
 
@@ -42,7 +42,8 @@
                                             class="form-control @error('outcome_category_id') is-invalid @enderror"
                                             style="width: 100%;">
                                             @foreach ($outcomeCategories as $outcomeCategory)
-                                                <option value="{{ $outcomeCategory->id }}"> {{ $outcomeCategory->name }} </option>
+                                                <option value="{{ $outcomeCategory->id }}"> {{ $outcomeCategory->name }}
+                                                </option>
                                             @endforeach
                                         </select>
 
@@ -71,6 +72,17 @@
 
                                         <!-- error message -->
                                         @error('description')
+                                            <small class="text-danger">{{ $message }}</small>
+                                        @enderror
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="image">File</label>
+                                        <input type="file" class="form-control @error('image') is-invalid @enderror"
+                                            name="image">
+
+                                        <!-- error message -->
+                                        @error('image')
                                             <small class="text-danger">{{ $message }}</small>
                                         @enderror
                                     </div>

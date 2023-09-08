@@ -32,8 +32,9 @@ class IncomeController extends Controller
         ]);
 
         //upload image
-        $image_name = 'no_image.webp';  
         if($request->file('image') == "") {
+            $image_name = 'no_image.webp';  
+        }else{
             $image = $request->file('image');
             $image->storeAs('public/incomes', $image->hashName());
             $image_name = $image->hashName();
@@ -105,13 +106,6 @@ class IncomeController extends Controller
             ]);
     
         }
-    
-        $income->update([
-            'date' => Carbon::createFromFormat('d/m/Y', $request->date)->format('Y-m-d'),
-            'name' => $request->name,
-            'description' => $request->description,
-            'budget' => (int)str_replace('.', '', $request->budget)
-        ]);
 
         // render view
         if($income){

@@ -4,8 +4,9 @@ namespace App\Http\Controllers;
 
 use Carbon\Carbon;
 use App\Models\Outcome;
-use App\Models\OutcomeCategory;
 use Illuminate\Http\Request;
+use App\Models\OutcomeCategory;
+use Illuminate\Support\Facades\Storage;
 
 class OutcomeController extends Controller
 {
@@ -14,8 +15,10 @@ class OutcomeController extends Controller
     */
     public function create()
     {
-        // render view
+        // get all data
         $outcomeCategories = OutcomeCategory::get();
+
+        // render view
         return view('outcomes.create', compact('outcomeCategories'));
     }
 
@@ -27,11 +30,21 @@ class OutcomeController extends Controller
         // validate request
         $this->validate($request, [
             'date'  =>  'required',
-            'outcome_category_id'   =>  'required',
+            'outcome_category_id'  =>  'required',
             'name'  =>  'required',
-            'budget'  =>  'required'
+            'budget'  =>  'required',
+            'image' =>  'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
+        //upload image
+        if($request->file('image') == "") {
+            $image_name = 'no_image.webp';  
+        }else{
+            $image = $request->file('image');
+            $image->storeAs('public/outcomes', $image->hashName());
+            $image_name = $image->hashName();
+        }
+        
 
         // insert new data to db
         Outcome::create([
@@ -39,6 +52,7 @@ class OutcomeController extends Controller
             'outcome_category_id' => $request->outcome_category_id,
             'name' => $request->name,
             'description' => $request->description,
+            'image' => $image_name,
             'budget' => (int)str_replace('.', '', $request->budget)
         ]);
         
@@ -51,10 +65,12 @@ class OutcomeController extends Controller
      */
     public function edit(Outcome $outcome)
     {
-        // render view
+        // get data
         $outcomeCategories = OutcomeCategory::get();
         $outcome->date = Carbon::createFromFormat('Y-m-d', $outcome->date)->format('d/m/Y');
-        return view('outcomes.edit', compact('outcome', 'outcomeCategories'));
+
+        // render view
+        return view('outcomes.edit', compact('outcomeCategories', 'outcome'));
     }
 
     /**
@@ -65,22 +81,52 @@ class OutcomeController extends Controller
         // validate request
         $this->validate($request, [
             'date'  =>  'required',
-            'outcome_category_id'   =>  'required',
+            'outcome_category_id'  =>  'required',
             'name'  =>  'required',
-            'budget'  =>  'required'
+            'budget'  =>  'required',
+            'image' =>  'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
         // update post data by id
-        $outcome->update([
-            'date' => Carbon::createFromFormat('d/m/Y', $request->date)->format('Y-m-d'),
-            'outcome_category_id' => $request->outcome_category_id,
-            'name' => $request->name,
-            'description' => $request->description,
-            'budget' => (int)str_replace('.', '', $request->budget)
-        ]);
+        if($request->file('image') == "") {
+
+            $outcome->update([
+                'date' => Carbon::createFromFormat('d/m/Y', $request->date)->format('Y-m-d'),
+                'outcome_category_id' => $request->outcome_category_id,
+                'name' => $request->name,
+                'description' => $request->description,
+                'budget' => (int)str_replace('.', '', $request->budget)
+            ]);
+    
+        } else {
+    
+            //hapus old image
+            Storage::disk('local')->delete('public/outcomes/'.$outcome->image);
+    
+            //upload new image
+            $image = $request->file('image');
+            $image->storeAs('public/outcomes', $image->hashName());
+            $image_name = $image->hashName();
+    
+            $outcome->update([
+                'date' => Carbon::createFromFormat('d/m/Y', $request->date)->format('Y-m-d'),
+                'outcome_category_id' => $request->outcome_category_id,
+                'name' => $request->name,
+                'description' => $request->description,
+                'image' => $image_name,
+                'budget' => (int)str_replace('.', '', $request->budget)
+            ]);
+    
+        }
 
         // render view
-        return redirect()->route('dashboard')->with(['success' => 'Data Berhasil Disimpan!']);
+        if($outcome){
+            //redirect dengan pesan sukses
+            return redirect()->route('dashboard')->with(['success' => 'Data Berhasil Diupdate!']);
+        }else{
+            //redirect dengan pesan error
+            return redirect()->route('dashboard')->with(['error' => 'Data Gagal Diupdate!']);
+        }
     }
 
     /**
