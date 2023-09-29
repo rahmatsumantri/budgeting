@@ -41,11 +41,11 @@
                                 <ul class="list-group list-group-unbordered my-3">
                                     <li class="list-group-item">
                                         <b> Saldo Keropak<span class="float-right text-primary">
-                                                {{ number_format($balance, 0, ',', '.') }} </span> </b>
+                                                {{ number_format($balance_keropak, 0, ',', '.') }} </span> </b>
                                     </li>
                                     <li class="list-group-item">
                                         <b> Pengeluaran Keropak <span class="float-right text-danger">
-                                                {{ number_format($outcome_month, 0, ',', '.') }} </span>
+                                                {{ number_format($outcome_keropak, 0, ',', '.') }} </span>
                                         </b>
                                     </li>
                                 </ul>

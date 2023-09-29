@@ -45,6 +45,7 @@ class DashboardController extends Controller
             'outcomes', 
             'balance_keropak',
             'balance', 
+            'outcome_keropak', 
             'outcome_month', 
             'outcome_day'
         ));
