@@ -30,6 +30,24 @@
                                                 {{ number_format($outcome_month, 0, ',', '.') }} </span>
                                         </b>
                                     </li>
+
+                                    <li class="list-group-item">
+                                        <b> Pengeluaran hari ini <span class="float-right text-danger">
+                                                {{ number_format($outcome_day, 0, ',', '.') }} </span>
+                                        </b>
+                                    </li>
+                                </ul>
+
+                                <ul class="list-group list-group-unbordered my-3">
+                                    <li class="list-group-item">
+                                        <b> Saldo Keropak<span class="float-right text-primary">
+                                                {{ number_format($balance, 0, ',', '.') }} </span> </b>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <b> Pengeluaran Keropak <span class="float-right text-danger">
+                                                {{ number_format($outcome_month, 0, ',', '.') }} </span>
+                                        </b>
+                                    </li>
                                 </ul>
                                 <a href="{{ route('incomes.create') }}" class="btn btn-primary"><b>Pemasukan</b></a>
                                 <a href="{{ route('outcomes.create') }}"
@@ -48,8 +66,8 @@
                                     <thead>
                                         <tr>
                                             <th>Tanggal</th>
-                                            <th>Kategori</th>
                                             <th>Nama</th>
+                                            <th>Kategori</th>
                                             <th>File</th>
                                             <th>Pengeluaran</th>
                                             <th></th>
@@ -58,26 +76,26 @@
                                     <tbody>
                                         @foreach ($outcomes as $outcome)
                                             <tr>
-                                                <td> {{ date('d/m/Y', strtotime($outcome->date)) }} </td>
-                                                <td> {{ $outcome->outcamecategory->name }} </td>
-                                                <td> {{ $outcome->name }} </td>
+                                                <td class="align-middle"> {{ date('d/m/Y', strtotime($outcome->date)) }} </td>
+                                                <td> {{ $outcome->name }} <br> <small>{{ $outcome->description }}</small></td>
+                                                <td class="align-middle"> {{ $outcome->outcamecategory->name }} </td>
                                                 <td class="text-center">
-                                                    @if (Storage::disk('public')->exists('outcomes/' . $outcome->image))
                                                     <img src="{{ Storage::url('public/outcomes/') . $outcome->image }}"
-                                                        class="rounded" style="width: 150px">
-                                                    @endif
+                                                        class="rounded" style="width: 150px" alt="">
                                                 </td>
-                                                <td class="text-right"> {{ number_format($outcome->budget, 0, ',', '.') }}
+                                                <td class="text-right align-middle"> {{ number_format($outcome->budget, 0, ',', '.') }}
                                                 </td>
-                                                <td class="text-center d-flex justify-content-center">
-                                                    <a href="{{ route('outcomes.edit', $outcome->id) }}"
-                                                        class="btn btn-sm btn-primary mr-2"> <i class="fas fa-edit"></i>
-                                                    </a>
+                                                <td class="text-center align-middle">
                                                     <form onsubmit="return confirm('Apakah Anda Yakin ?');"
                                                         action="{{ route('outcomes.destroy', $outcome->id) }}"
                                                         method="POST">
+
                                                         @csrf
                                                         @method('DELETE')
+
+                                                        <a href="{{ route('outcomes.edit', $outcome->id) }}"
+                                                            class="btn btn-sm btn-primary mr-2"> <i class="fas fa-edit"></i>
+                                                        </a>
                                                         <button type="submit" class="btn btn-sm btn-danger"> <i
                                                                 class="fas fa-trash"></i> </button>
                                                     </form>
@@ -107,25 +125,25 @@
                                     <tbody>
                                         @foreach ($incomes as $income)
                                             <tr>
-                                                <td> {{ date('d/m/Y', strtotime($income->date)) }} </td>
-                                                <td> {{ $income->name }} </td>
-                                                <td class="text-center">
-                                                    @if (Storage::disk('public')->exists('incomes/' . $income->image))
+                                                <td class="align-middle"> {{ date('d/m/Y', strtotime($income->date)) }} </td>
+                                                <td class="align-middle"> {{ $income->name }} <br> <small>{{ $income->description }}</small></td>
+                                                <td class="text-center align-middle">
                                                     <img src="{{ Storage::url('public/incomes/') . $income->image }}"
-                                                        class="rounded" style="width: 150px">
-                                                    @endif
+                                                        class="rounded" style="width: 150px" alt="">
                                                 </td>
-                                                <td class="text-right"> {{ number_format($income->budget, 0, ',', '.') }}
+                                                <td class="text-right align-middle"> {{ number_format($income->budget, 0, ',', '.') }}
                                                 </td>
-                                                <td class="text-center d-flex justify-content-center">
-                                                    <a href="{{ route('incomes.edit', $income->id) }}"
-                                                        class="btn btn-sm btn-primary mr-2"> <i class="fas fa-edit"></i>
-                                                    </a>
+                                                <td class="text-center align-middle">
                                                     <form onsubmit="return confirm('Apakah Anda Yakin ?');"
                                                         action="{{ route('incomes.destroy', $income->id) }}"
                                                         method="POST">
+
                                                         @csrf
                                                         @method('DELETE')
+
+                                                        <a href="{{ route('incomes.edit', $income->id) }}"
+                                                            class="btn btn-sm btn-primary mr-2"> <i class="fas fa-edit"></i>
+                                                        </a>
                                                         <button type="submit" class="btn btn-sm btn-danger"> <i
                                                                 class="fas fa-trash"></i> </button>
                                                     </form>
