@@ -26,10 +26,10 @@ class DashboardController extends Controller
         $outcomes = Outcome::get();
         $incomes = Income::get();
 
-        $income_keropak = Income::where('name', 'keropak')->sum('budget');
+        $income_keropak = Income::where('name', 'Keropak')->sum('budget');
         $income_total = Income::sum('budget') - $income_keropak;
         
-        $outcome_category_keropak = OutcomeCategory::where('name', 'keropak')->first()->id ?? 0;
+        $outcome_category_keropak = OutcomeCategory::where('name', 'Keropak')->first()->id ?? 0;
         $outcome_keropak = Outcome::where('outcome_category_id', $outcome_category_keropak)->sum('budget');
         $outcome_total = Outcome::sum('budget') - $outcome_keropak;
 
