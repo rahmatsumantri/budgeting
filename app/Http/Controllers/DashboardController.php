@@ -23,8 +23,8 @@ class DashboardController extends Controller
         }
 
         // get data
-        $outcomes = Outcome::get();
-        $incomes = Income::get();
+        $outcomes = Outcome::orderBy('date', 'DESC')->get();
+        $incomes = Income::orderBy('date', 'DESC')->get();
 
         $income_keropak = Income::where('name', 'Keropak')->sum('budget');
         $income_total = Income::sum('budget') - $income_keropak;
