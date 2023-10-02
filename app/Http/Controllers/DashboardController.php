@@ -36,8 +36,11 @@ class DashboardController extends Controller
         $balance = $income_total - $outcome_total;
         $balance_keropak = $income_keropak - $outcome_keropak;
 
-        $outcome_month = Outcome::whereBetween('date', [$from, $to])->sum('budget');
-        $outcome_day = Outcome::where('date', date("Y-m-d"))->sum('budget');
+
+        $outcome_month_keropak = Outcome::where('outcome_category_id', $outcome_category_keropak)->whereBetween('date', [$from, $to])->sum('budget');
+        $outcome_day_keropak = Outcome::where('outcome_category_id', $outcome_category_keropak)->where('date', date("Y-m-d"))->sum('budget');
+        $outcome_month = Outcome::whereBetween('date', [$from, $to])->sum('budget') - $outcome_month_keropak;
+        $outcome_day = Outcome::where('date', date("Y-m-d"))->sum('budget') - $outcome_day_keropak;
 
         // render view
         return view('dashboard', compact(
